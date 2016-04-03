@@ -1,0 +1,32 @@
+<Config>
+	<Scenario>
+		<traces>C:\Users\Lenovo\Desktop\Brunner\Trace\Manual\entrada01</traces>
+		<Topology>
+			<path>C:\Users\Lenovo\Desktop\Brunner\topologydata\TOPOLOGY_Fossi</path>
+			<Instance>
+				<id>1</id>
+				<bmpSize>64</bmpSize>
+				<bmpThreshold>50</bmpThreshold>
+				<startTime>0</startTime>
+				<endTime>60</endTime>
+			</Instance>
+			<Instance>
+				<id>2</id>
+				<bmpSize>2048</bmpSize>
+				<bmpThreshold>50</bmpThreshold>
+				<startTime>0</startTime>
+				<endTime>60</endTime>
+			</Instance>
+		</Topology>
+		<Topology>
+			<path>C:\Users\Lenovo\Desktop\Brunner\topologydata\abilene\TOPOLOGY_Fossi</path>
+			<Instance>
+				<id>3</id>
+				<bmpSize>2048</bmpSize>
+				<bmpThreshold>50</bmpThreshold>
+				<startTime>0</startTime>
+				<endTime>60</endTime>
+			</Instance>
+		</Topology>
+	</Scenario>
+</Config>

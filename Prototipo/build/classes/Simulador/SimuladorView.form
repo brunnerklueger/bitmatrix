@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="panelAcao" max="32767" attributes="0"/>
+          <Component id="panelCorpo" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Component id="panelCorpo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="panelAcao" min="-2" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="panelAcao">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
+        <Property name="alignment" type="int" value="4"/>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="btnFull">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Full"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFullActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnRealTrafficModule">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Real Analyse"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRealTrafficModuleActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnAnalyseModule">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Analyse Module"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnalyseModuleActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnOnlineModule">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Online Module"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOnlineModuleActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnViewBitmap">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ViewBitmap"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewBitmapActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="panelCorpo">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="panelParametros" alignment="1" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  <Component id="panelParametros" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="panelParametros">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="Par&#xe2;metros"/>
+              </Border>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Component id="labelBitmapSize" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelStartTime" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="labelSwitches" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelSaidas" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelBitmaps" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="label" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="txtEntrada" max="32767" attributes="0"/>
+                          <Component id="txtBitmaps" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtSaidas" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="cmbSwitches" max="32767" attributes="0"/>
+                                  <Component id="txtBitmapSize" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtStartTime" alignment="1" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="labelEndTime" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelBitmpaThreshold" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                      <Component id="labelPacketsFields" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtEndTime" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtBitmapThreshold" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtPacketsFields" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnBrowseSaidas" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnBrowseBitmap" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnBrowseEntrada" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnBrowseEntrada" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelBitmaps" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtBitmaps" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnBrowseBitmap" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelSaidas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtSaidas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnBrowseSaidas" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelSwitches" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbSwitches" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelPacketsFields" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPacketsFields" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelStartTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtStartTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelEndTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtEndTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelBitmapSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtBitmapSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelBitmpaThreshold" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtBitmapThreshold" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JTextField" name="txtStartTime">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="2"/>
+                <Property name="text" type="java.lang.String" value="0"/>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="txtEndTime"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtStartTimeActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelStartTime">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Start Time:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelEndTime">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="End Time:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtEndTime">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="2"/>
+                <Property name="text" type="java.lang.String" value="60"/>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="labelStartTime"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtEndTimeFocusLost"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="label">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Entrada:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtEntrada">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="2"/>
+                <Property name="text" type="java.lang.String" value="D:\u005cMestrado\u005cPrototipo\u005cTrace\u005cManual" containsInvalidXMLChars="true"/>
+                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="txtEndTime"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnBrowseEntrada">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="..."/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBrowseEntradaActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelBitmaps">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Bitmaps:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtBitmaps">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="2"/>
+                <Property name="text" type="java.lang.String" value="D:\u005cMestrado\u005cPrototipo\u005cBitmaps" containsInvalidXMLChars="true"/>
+                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="txtEndTime"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBitmapsActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnBrowseBitmap">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="..."/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBrowseBitmapActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelSaidas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Saidas:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtSaidas">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="2"/>
+                <Property name="text" type="java.lang.String" value="D:\u005cMestrado\u005cPrototipo\u005cSimulations" containsInvalidXMLChars="true"/>
+                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="txtEndTime"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnBrowseSaidas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="..."/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBrowseSaidasActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelSwitches">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Switches:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cmbSwitches">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="6">
+                    <StringItem index="0" value="2"/>
+                    <StringItem index="1" value="4"/>
+                    <StringItem index="2" value="8"/>
+                    <StringItem index="3" value="16"/>
+                    <StringItem index="4" value="32"/>
+                    <StringItem index="5" value="64"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelBitmapSize">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Bitmap Size:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelBitmpaThreshold">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Bitmap Threshold:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtBitmapSize">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="2"/>
+                <Property name="text" type="java.lang.String" value="2048"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtBitmapThreshold">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="2"/>
+                <Property name="text" type="java.lang.String" value="50"/>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="labelStartTime"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtBitmapThresholdFocusLost"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelPacketsFields">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Packets Fields:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtPacketsFields">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="2"/>
+                <Property name="text" type="java.lang.String" value="7"/>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="labelStartTime"/>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
