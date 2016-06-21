@@ -6,7 +6,7 @@
 package AnalysisModule;
 
 import Network.Topology;
-import Simulador.Instance;
+import Network.Instance;
 import algs4.DirectedEdge;
 import java.io.PrintWriter;
 

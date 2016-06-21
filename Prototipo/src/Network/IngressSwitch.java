@@ -1,6 +1,5 @@
 package Network;
 
-import Simulador.Instance;
 import java.io.IOException;
 import java.io.File;
 

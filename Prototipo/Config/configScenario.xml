@@ -1,10 +1,9 @@
 <Config>
-	<Scenario>
-		<Quantidade>1</Quantidade>
-		<TempControl>	
-				<id>1</id>
-				<startTime>0</startTime>
-				<endTime>3162</endTime>
-		</TempControl>
+    <SimulationDir>D:\Mestrado\SketchMatrix\trunk\Simulations</SimulationDir>
+	<Scenario id="1">
+		<startTime>0</startTime>
+		<endTime>99999999</endTime>
+		<traces>D:\Mestrado\SketchMatrix\trunk\Tracer_10k_Pacotes.csv</traces>
+		<Topology>1</Topology>
 	</Scenario>
 </Config>

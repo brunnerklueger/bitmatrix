@@ -1,7 +1,7 @@
 package AnalysisModule;
 
 import Network.Topology;
-import Simulador.Instance;
+import Network.Instance;
 import java.io.PrintWriter;
 
 /**

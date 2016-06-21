@@ -5,13 +5,15 @@
  */
 package Network;
 
-import Simulador.Instance;
+import Util.SyncPipe;
+import Optimization.HittingSet;
 import algs4.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import stdlib.In;
@@ -24,7 +26,7 @@ public class Topology {
 
     private DijkstraAllPairsSP paths;
     private EdgeWeightedDigraph topology;
-    private EdgeWeightedDigraphChild topology2;
+    //private EdgeWeightedDigraphChild topology2;
     private Set<Integer> nodes;
     private String traces;
     private ArrayList<Instance> lstInstance = new ArrayList<>();
@@ -33,27 +35,17 @@ public class Topology {
     private int numberOfSwitches;
     private String saidasDir;
     private int idTopology;
-    
+    private Set<Integer> observers = new HashSet();
+
     private Long[][] trafficMatrix;
     //private int numberOfPacketFields;
 
     public void readTopology(String filename) throws IOException, InterruptedException {
 
-        topology = new EdgeWeightedDigraph(new In(filename));
-        topology2 = new EdgeWeightedDigraphChild(new In(filename));
-        System.out.println(topology);
-        PrintWriter writer = new PrintWriter("grafoColorido.dot", "UTF-8");
-        writer.println("digraph 1 {");
-        writer.println("graph[fontname=\"CourierNew\";rankdir=\"LR\";pad=\"0.25\"]\n"
-                + "node[fontname=\"CourierNew\" target=\"_parent\"]\n"
-                + "edge[fontname=\"CourierNew\"]\n"
-                + "concentrate=true");
-
-        writer.println(topology2);
-        writer.println("}");
-        writer.close();
-        paths = new DijkstraAllPairsSP(topology2);
-        System.out.println(paths);
+        topology = new EdgeWeightedDigraphChild(new In(filename));
+        //topology2 = new EdgeWeightedDigraphChild(new In(filename));
+        //System.out.println(topology);
+        paths = new DijkstraAllPairsSP(topology);
         nodes = new HashSet<>();
         for (DirectedEdge edge : topology.edges()) {
             nodes.add(edge.from());
@@ -61,6 +53,15 @@ public class Topology {
         }
         this.setNumberOfSwitches(nodes.size());
 
+        // TODO : Montar lista de observadores a partir da função de hitting set
+        HittingSet h = new HittingSet(nodes);
+        for (Integer i = 0; i < this.numberOfSwitches; i++) {
+            for (Integer j = i + 1; j < this.numberOfSwitches; j++) {
+                h.collection.add(getPathNodes(i, j));
+            }
+        }
+        observers.addAll(h.solve());
+        System.out.println("Topology: " + this.idTopology + " " + Arrays.toString(observers.toArray()));
     }
 
     public Set<Integer> getPathNodes(int src, int dest) {
@@ -81,7 +82,7 @@ public class Topology {
     }
 
     public PrintWriter paintPath(int ingress, int egress) throws FileNotFoundException, UnsupportedEncodingException {
-        for (DirectedEdge edge : this.getPath(ingress,egress)) {
+        for (DirectedEdge edge : this.getPath(ingress, egress)) {
             DirectedEdgeChild edgeChild = (DirectedEdgeChild) edge;
             edgeChild.setColor(true);
         }
@@ -90,13 +91,68 @@ public class Topology {
         writer.println("graph[fontname=\"CourierNew\";rankdir=\"LR\";pad=\"0.25\"]\n"
                 + "node[fontname=\"CourierNew\" target=\"_parent\"]\n"
                 + "edge[fontname=\"CourierNew\"]\n");
-        writer.println(this.topology2);
+        writer.println(this.topology);
 
         writer.println(ingress + "[style=filled, fillcolor=red]");
         writer.println(egress + "[style=filled, fillcolor=green]");
         writer.println("}");
         writer.close();
         return writer;
+
+    }
+
+    public void createSwitches(Hash hash) throws Exception {
+        if (lstInstance.size() > 0) {
+            for (Instance instance : lstInstance) {
+                for (int node : nodes) {
+                    instance.createSwitch(node, numberOfSwitches, hash, observers.contains(node));
+                }
+            }
+        } else {
+            Integer size = this.numberOfSwitches * this.numberOfSwitches * Integer.SIZE;
+
+            Instance instance = new Instance();
+            instance.setId("1");
+            instance.setBaseDir("D:\\Mestrado\\SketchMatrix\\trunk\\Simulations\\Bitmaps\\Topology" + idTopology + "\\Instance" + instance.getId());
+            instance.setBitmapDir(instance.getBaseDir() + "\\Bitmaps");
+            instance.type = Instance.InstanceType.BITMAP;
+            instance.setBitMapSize(size);
+            instance.setBitMapThreshold(10);
+            Simulador.SimuladorConsole.createDirectoryTree(instance.getBaseDir());
+            lstInstance.add(instance);
+
+            instance = new Instance();
+            instance.setId("2");
+            instance.setBaseDir("D:\\Mestrado\\SketchMatrix\\trunk\\Simulations\\Bitmaps\\Topology" + idTopology + "\\Instance" + instance.getId());
+            instance.setBitmapDir(instance.getBaseDir() + "\\Bitmaps");
+            instance.type = Instance.InstanceType.BITMAP;
+            instance.setBitMapSize(size);
+            instance.setBitMapThreshold(30);
+            Simulador.SimuladorConsole.createDirectoryTree(instance.getBaseDir());
+            lstInstance.add(instance);
+
+            instance = new Instance();
+            instance.setId("3");
+            instance.setBaseDir("D:\\Mestrado\\SketchMatrix\\trunk\\Simulations\\Bitmaps\\Topology" + idTopology + "\\Instance" + instance.getId());
+            instance.setBitmapDir(instance.getBaseDir() + "\\Bitmaps");
+            instance.type = Instance.InstanceType.BITMAP;
+            instance.setBitMapSize(size);
+            instance.setBitMapThreshold(50);
+            Simulador.SimuladorConsole.createDirectoryTree(instance.getBaseDir());
+            lstInstance.add(instance);
+
+            instance = new Instance();
+            instance.setId("4");
+            instance.setBaseDir("D:\\Mestrado\\SketchMatrix\\trunk\\Simulations\\Bitmaps\\Topology" + idTopology + "\\Instance" + instance.getId());
+            instance.setBitmapDir(instance.getBaseDir() + "\\Bitmaps");
+            instance.type = Instance.InstanceType.OPT_COUNTER_ARRAY;
+            instance.setBitMapSize(size);
+            instance.setBitMapThreshold(0.5F);
+            Simulador.SimuladorConsole.createDirectoryTree(instance.getBaseDir());
+            lstInstance.add(instance);
+
+            createSwitches(hash);
+        }
 
     }
 
@@ -116,20 +172,51 @@ public class Topology {
         int t = 0;
 
         for (Instance instance : this.lstInstance) {
-            instance.doReceivePacket(this.getPathNodes(ingress, egress),pkt);
+            if (instance.type == Instance.InstanceType.BITMAP) {
+                instance.doReceivePacket(this.getPathNodes(ingress, egress), pkt);
+            } else {
+                instance.doReceivePacket(ingress, egress, this.getPathNodes(ingress, egress));
+            }
         }
 
         this.paintPath(ingress, egress);
 
         t = t;
     }
-    
-    public void saveLastBitmap(long lastEpoch) throws Exception{
+
+    public void saveLastBitmap(long lastEpoch) throws Exception {
         for (Instance instance : this.lstInstance) {
             instance.saveLastBitmap(lastEpoch);
         }
     }
-    
+
+    public void printTopology() {
+        try {
+            PrintWriter writer = new PrintWriter(this.saidasDir + "input.dot", "UTF-8");
+            writer.println("digraph 1 {");
+            writer.println("graph[fontname=\"Arial\";rankdir=\"LR\";pad=\"0.25\"]\n"
+                    + "node[fontname=\"Arial\" target=\"_parent\"]\n"
+                    + "edge[fontname=\"Arial\"]\n"
+                    + "concentrate=true");
+
+            writer.println(topology);
+            writer.println("}");
+            writer.close();
+
+            Process p = Runtime.getRuntime().exec("cmd");
+            new Thread(new SyncPipe(p.getErrorStream(), System.err)).start();
+            new Thread(new SyncPipe(p.getInputStream(), System.out)).start();
+            PrintWriter stdin = new PrintWriter(p.getOutputStream());
+            stdin.println("dot -Tjpg " + this.saidasDir + "input.dot" + " > " + this.saidasDir + "output.jpg");
+            // write any other commands you want here
+            stdin.close();
+            int returnCode = p.waitFor();
+            System.out.println("Return code = " + returnCode);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     /**
      * @param aNumberOfSwitches the numberOfSwitches to set
      */
@@ -192,7 +279,7 @@ public class Topology {
      */
     public void setSaidasDir(String aSaidasDir) {
         saidasDir = aSaidasDir;
-        if(!saidasDir.endsWith("\\")){
+        if (!saidasDir.endsWith("\\")) {
             saidasDir += "\\";
         }
     }

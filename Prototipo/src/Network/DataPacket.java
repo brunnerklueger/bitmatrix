@@ -104,7 +104,7 @@ public class DataPacket {
         this.size = size;
     }
 
-    public long getByNumber(int i) {
+    public Long getByNumber(int i) {
         switch (i) {
             case 0:
                 return time;
@@ -119,7 +119,7 @@ public class DataPacket {
             case 5:
                 return payload;
             default:
-                return -1;
+                return -1L;
         }
     }
 

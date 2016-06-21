@@ -6,6 +6,7 @@
 package OnlineModule;
 
 import Network.DataPacket;
+import Simulador.Scenario;
 import Network.Topology;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -100,6 +101,79 @@ public class OnlineDataStream {
             topology.saveLastBitmap(lastEpoch);
         }
 
+    }
+
+    public void simulate(ArrayList<Scenario> lstScenario) throws Exception {
+        String delim = "[,]";
+        DecimalFormat df = new DecimalFormat("00");
+
+        FileInputStream tracesFIS;
+        DataInputStream tracesDIS;
+        BufferedReader tracesBR;
+        String tracesStr;
+
+        long lastEpoch = 0;
+
+        for (Scenario scenario : lstScenario) {
+        //hash movido
+            //doCreateSwtiches(instance,h);
+            File diretorio = new File(scenario.traceFile);
+            File files[] = diretorio.listFiles();
+            if (files == null) {
+                files = new File[1];
+                files[0] = diretorio;
+            } else {
+                Arrays.sort(files);
+            }
+
+            for (File file : files) {
+
+                if (file.isFile()) {
+
+                    tracesFIS = new FileInputStream(file);
+                    tracesDIS = new DataInputStream(tracesFIS);
+                    tracesBR = new BufferedReader(new InputStreamReader(tracesDIS));
+
+                    tracesStr = tracesBR.readLine();
+
+                    long cnt = 0;
+                    while (tracesStr != null) {
+                        if (cnt % 1000 == 0) {
+                            System.out.println(cnt/1000 + "K Pacotes");
+                        }
+
+                        String[] packetTokens = tracesStr.split(delim);
+
+                        long time = parseLong(packetTokens[0]);
+                        long srcIP = parseLong(packetTokens[1]);
+                        long dstIP = parseLong(packetTokens[2]);
+                        int srcPort = Integer.parseInt(packetTokens[3]);
+                        int dstPort = Integer.parseInt(packetTokens[4]);
+                        int payload = Integer.parseInt(packetTokens[5]);
+
+                        //DataPacket pkt = new DataPacket(time, srcIP, dstIP, srcPort, dstPort, protocol, size);
+                        DataPacket pkt = new DataPacket(time, srcIP, dstIP, srcPort, dstPort, payload);
+
+                        for (Topology topology : scenario.lstTopology) {
+                            topology.receivePacket(pkt);
+                        }
+
+                        lastEpoch = pkt.getTime();
+
+                        tracesStr = tracesBR.readLine();
+                        cnt++;
+                    }
+                    tracesBR.close();
+                    tracesDIS.close();
+                    tracesFIS.close();
+                }
+            }
+
+            for (Topology topology : scenario.lstTopology) {
+                topology.saveLastBitmap(lastEpoch);
+            }
+
+        }
     }
 
     protected Long parseLong(String texto) {

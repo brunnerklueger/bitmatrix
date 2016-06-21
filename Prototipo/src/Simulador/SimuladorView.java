@@ -5,9 +5,6 @@
  */
 package Simulador;
 
-import AnalysisModule.FullMeshDataAnalysis;
-import OnlineModule.OnlineDataStreamFactory;
-import AnalysisModule.IngressEgressDataAnalysis;
 import Network.BitMap;
 import java.io.File;
 import java.io.FileInputStream;
