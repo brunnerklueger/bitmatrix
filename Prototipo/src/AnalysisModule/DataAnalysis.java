@@ -457,7 +457,7 @@ public abstract class DataAnalysis {
                         long srcIP = parseLong(packetTokens[1]);
                         long dstIP = parseLong(packetTokens[2]);
 
-                        if (time - 21600000000L > scenario.startTime && time - 21600000000L < scenario.endTime) {
+                        if (((time - 21600000000L) > scenario.startTime) && ((time - 21600000000L) < scenario.endTime)) {
 
                             for (Topology topology : scenario.lstTopology) {
 
@@ -700,8 +700,8 @@ public abstract class DataAnalysis {
                                         ois = new ObjectInputStream(fin);
                                         bitMap = (BitMap) ois.readObject();
 
-                                        if ((bitMap.getStartEpoch() - 21600000000L > scenario.startTime)
-                                                && (bitMap.getStartEpoch() - 21600000000L < scenario.endTime)) {
+                                        if (((bitMap.getStartEpoch() - 21600000000L) > scenario.startTime)
+                                                && ((bitMap.getStartEpoch() - 21600000000L) < scenario.endTime)) {
                                             if (firstBitmap == -2) {
                                                 firstBitmap = numberOfBmp - 1;
                                             }
@@ -735,8 +735,8 @@ public abstract class DataAnalysis {
                                         ois = new ObjectInputStream(fin);
                                         bitMap = (BitMap) ois.readObject();
 
-                                        if ((bitMap.getStartEpoch() - 21600000000L > scenario.startTime)
-                                                && (bitMap.getStartEpoch() - 21600000000L < scenario.endTime)) {
+                                        if (((bitMap.getStartEpoch() - 21600000000L) > scenario.startTime)
+                                                && ((bitMap.getStartEpoch() - 21600000000L) < scenario.endTime)) {
                                             if (firstBitmap == -2) {
                                                 firstBitmap = numberOfBmp - 1;
                                             }

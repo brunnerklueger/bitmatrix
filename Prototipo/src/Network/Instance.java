@@ -15,13 +15,13 @@ import java.util.Set;
  * @author Igor Siqueira
  */
 public class Instance {
-    
-    public enum InstanceType{
-        
+
+    public enum InstanceType {
+
         BITMAP,
         COUNTER_ARRAY,
         OPT_COUNTER_ARRAY;
-        
+
         public static InstanceType getType(int type) throws Exception {
             switch (type) {
                 case 1:
@@ -49,14 +49,15 @@ public class Instance {
     private int bitMapSize;
     private float bitMapThreshold;
 
-    public Map<Integer, Switch> networkSwitch = new HashMap();;
+    public Map<Integer, Switch> networkSwitch = new HashMap();
+    ;
 
     public double[][] trafficMatrix;
 
     public InstanceType type;
 
     protected void createSwitch(Integer swId, int nbSw, Hash h, boolean isObserver) throws Exception {
-        switch(type){
+        switch (type) {
             case BITMAP:
                 networkSwitch.put(swId, new Switch(swId, this.bitMapSize, this.bitMapThreshold, h, this.getBitmapDir()));
                 break;
@@ -88,13 +89,13 @@ public class Instance {
             }
         }
     }
-    
-    public void doCalculateMatrixElem(int ingress, int egress,Topology topology, int traffic) {
+
+    public void doCalculateMatrixElem(int ingress, int egress, Topology topology, int traffic) {
         int ingressSW;
         int egressSW;
-                
+
         for (DirectedEdge edge : topology.getPath(ingress, egress)) {
-            
+
             for (DirectedEdge edge2 : topology.getPath(edge.from(), egress)) {
                 ingressSW = edge.from();
                 egressSW = edge2.to();
@@ -104,7 +105,7 @@ public class Instance {
                     ingressSW = ingressSW ^ egressSW;
                 }
 
-                 trafficMatrix[ingressSW][egressSW] += traffic;
+                trafficMatrix[ingressSW][egressSW] += traffic;
             }
         }
     }
@@ -179,12 +180,14 @@ public class Instance {
         bitMapThreshold = (float) aBitMapThreshold / 100F;
     }
 
-    public void setId(String aId) {
-        id = aId;
-    }
-
     public String getId() {
-        return id;
+        if (type == InstanceType.BITMAP) {
+            return bitMapSize + "_" + ((int) (bitMapThreshold * 100));
+        } else if (type == InstanceType.COUNTER_ARRAY) {
+            return "CONTER_ARRAY";
+        } else {
+            return "OPT_COUNTER_ARRAY";
+        }
     }
 
     public void setBaseDir(String aBaseDir) {

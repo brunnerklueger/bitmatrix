@@ -1,45 +1,30 @@
 <Config>
-    <SimulationDir>D:\Mestrado\SketchMatrix\trunk\Simulations</SimulationDir>
+    <SimulationDir>D:\Mestrado\Projetos\fossibitmatrix.git\Simulations</SimulationDir>
     <Scenario>
         <ScenarioId>1</ScenarioId>
         <startTime>0</startTime>
         <endTime>99999999</endTime>
-        <traces>D:\Mestrado\SketchMatrix\trunk\Tracer_100k_Pacotes.csv</traces>
-        <Topology>
-            <TopologyId>1</TopologyId>
-            <path>D:\Mestrado\SketchMatrix\trunk\Fossi_TOPOLOGY</path>
-        </Topology>
-        <Topology>
-            <TopologyId>2</TopologyId>
-            <path>D:\Mestrado\SketchMatrix\trunk\abilene_TOPOLOGY</path>
-        </Topology>
-        <Topology>
-            <TopologyId>3</TopologyId>
-            <path>D:\Mestrado\SketchMatrix\trunk\AS1221_TOPOLOGY</path>
-        </Topology>
-        <Topology>
-            <TopologyId>4</TopologyId>
-            <path>D:\Mestrado\SketchMatrix\trunk\AS1239_TOPOLOGY</path>
-        </Topology>
-        <Topology>
-            <TopologyId>5</TopologyId>
-            <path>D:\Mestrado\SketchMatrix\trunk\AS2914_TOPOLOGY</path>
-        </Topology>
-        <Topology>
-            <TopologyId>6</TopologyId>
-            <path>D:\Mestrado\SketchMatrix\trunk\AS3257_TOPOLOGY</path>
-        </Topology>
-        <Topology>
-            <TopologyId>7</TopologyId>
-            <path>D:\Mestrado\SketchMatrix\trunk\AS3356_TOPOLOGY</path>
-        </Topology>
-        <Topology>
-            <TopologyId>8</TopologyId>
-            <path>D:\Mestrado\SketchMatrix\trunk\AS7018_TOPOLOGY</path>
-        </Topology>
-        <Topology>
-            <TopologyId>9</TopologyId>
-            <path>D:\Mestrado\SketchMatrix\trunk\geant_TOPOLOGY</path>
-        </Topology>
+        <traces>D:\Mestrado\Projetos\fossibitmatrix.git\Tracer_100k_Pacotes.csv</traces>
+        <Sizes>
+          <bmpSize>64</bmpSize>
+          <bmpSize>512</bmpSize>
+          <bmpSize>16384</bmpSize>
+          <bmpSize>65536</bmpSize>
+        </Sizes>
+        <Thresholds>
+          <bmpThreshold>10</bmpThreshold>
+          <bmpThreshold>30</bmpThreshold>
+          <bmpThreshold>50</bmpThreshold>
+          <bmpThreshold>70</bmpThreshold>
+        </Thresholds>
+        <path>D:\Mestrado\Projetos\fossibitmatrix.git\Fossi_TOPOLOGY</path>
+        <path>D:\Mestrado\Projetos\fossibitmatrix.git\abilene_TOPOLOGY</path>
+        <path>D:\Mestrado\Projetos\fossibitmatrix.git\AS1221_TOPOLOGY</path>
+        <path>D:\Mestrado\Projetos\fossibitmatrix.git\AS1239_TOPOLOGY</path>
+        <path>D:\Mestrado\Projetos\fossibitmatrix.git\AS2914_TOPOLOGY</path>
+        <path>D:\Mestrado\Projetos\fossibitmatrix.git\AS3257_TOPOLOGY</path>
+        <path>D:\Mestrado\Projetos\fossibitmatrix.git\AS3356_TOPOLOGY</path>
+        <path>D:\Mestrado\Projetos\fossibitmatrix.git\AS7018_TOPOLOGY</path>
+        <path>D:\Mestrado\Projetos\fossibitmatrix.git\geant_TOPOLOGY</path>
     </Scenario>
 </Config>

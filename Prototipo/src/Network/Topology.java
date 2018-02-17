@@ -34,7 +34,7 @@ public class Topology {
     private long bitmask;
     private int numberOfSwitches;
     private String saidasDir;
-    private int idTopology;
+    private String idTopology;
     private Set<Integer> observers = new HashSet();
 
     private Long[][] trafficMatrix;
@@ -108,50 +108,6 @@ public class Topology {
                     instance.createSwitch(node, numberOfSwitches, hash, observers.contains(node));
                 }
             }
-        } else {
-            Integer size = this.numberOfSwitches * this.numberOfSwitches * Integer.SIZE;
-
-            Instance instance = new Instance();
-            instance.setId("1");
-            instance.setBaseDir("D:\\Mestrado\\SketchMatrix\\trunk\\Simulations\\Bitmaps\\Topology" + idTopology + "\\Instance" + instance.getId());
-            instance.setBitmapDir(instance.getBaseDir() + "\\Bitmaps");
-            instance.type = Instance.InstanceType.BITMAP;
-            instance.setBitMapSize(size);
-            instance.setBitMapThreshold(10);
-            Simulador.SimuladorConsole.createDirectoryTree(instance.getBaseDir());
-            lstInstance.add(instance);
-
-            instance = new Instance();
-            instance.setId("2");
-            instance.setBaseDir("D:\\Mestrado\\SketchMatrix\\trunk\\Simulations\\Bitmaps\\Topology" + idTopology + "\\Instance" + instance.getId());
-            instance.setBitmapDir(instance.getBaseDir() + "\\Bitmaps");
-            instance.type = Instance.InstanceType.BITMAP;
-            instance.setBitMapSize(size);
-            instance.setBitMapThreshold(30);
-            Simulador.SimuladorConsole.createDirectoryTree(instance.getBaseDir());
-            lstInstance.add(instance);
-
-            instance = new Instance();
-            instance.setId("3");
-            instance.setBaseDir("D:\\Mestrado\\SketchMatrix\\trunk\\Simulations\\Bitmaps\\Topology" + idTopology + "\\Instance" + instance.getId());
-            instance.setBitmapDir(instance.getBaseDir() + "\\Bitmaps");
-            instance.type = Instance.InstanceType.BITMAP;
-            instance.setBitMapSize(size);
-            instance.setBitMapThreshold(50);
-            Simulador.SimuladorConsole.createDirectoryTree(instance.getBaseDir());
-            lstInstance.add(instance);
-
-            instance = new Instance();
-            instance.setId("4");
-            instance.setBaseDir("D:\\Mestrado\\SketchMatrix\\trunk\\Simulations\\Bitmaps\\Topology" + idTopology + "\\Instance" + instance.getId());
-            instance.setBitmapDir(instance.getBaseDir() + "\\Bitmaps");
-            instance.type = Instance.InstanceType.OPT_COUNTER_ARRAY;
-            instance.setBitMapSize(size);
-            instance.setBitMapThreshold(0.5F);
-            Simulador.SimuladorConsole.createDirectoryTree(instance.getBaseDir());
-            lstInstance.add(instance);
-
-            createSwitches(hash);
         }
 
     }
@@ -292,11 +248,11 @@ public class Topology {
         this.trafficMatrix = trafficMatrix;
     }
 
-    public int getIdTopology() {
+    public String getIdTopology() {
         return idTopology;
     }
 
-    public void setIdTopology(int idTopology) {
+    public void setIdTopology(String idTopology) {
         this.idTopology = idTopology;
     }
 

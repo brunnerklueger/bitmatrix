@@ -45,6 +45,11 @@ public class HittingSet {
             this.set.add(new Teste(i));
         }
     }
+    
+    public HittingSet(Set<Integer> set, Set<Set<Integer>> collection) {
+        this(set);
+        this.collection = collection;
+    }
 
     public Set<Integer> solve() {
         Set<Integer> minimumHittingSet = new HashSet<>();

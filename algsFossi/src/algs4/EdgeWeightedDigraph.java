@@ -38,9 +38,11 @@ import stdlib.In;
  *  @author Kevin Wayne
  */
 public class EdgeWeightedDigraph {
-    protected final int V;
+    protected int V;
     protected int E;
     protected Bag<DirectedEdge>[] adj;
+    
+    public EdgeWeightedDigraph() {}
     
     
     /**
@@ -90,25 +92,16 @@ public class EdgeWeightedDigraph {
         this(in.readInt());
         int E = in.readInt();
         if (E < 0) throw new IllegalArgumentException("Number of edges must be nonnegative");
-        PrintWriter writer = new PrintWriter("grafo.dot", "UTF-8");
-        writer.println("digraph 1 {");
-        writer.println("graph[fontname=\"CourierNew\";rankdir=\"LR\";pad=\"0.25\"]\n" +
-        "node[fontname=\"CourierNew\" target=\"_parent\"]\n" +
-        "edge[fontname=\"CourierNew\"]\n"+
-        "concentrate=true");
         for (int i = 0; i < E; i++) {
-            int v = in.readInt() - 1;
-            int w = in.readInt() - 1;
+            int v = in.readInt();
+            int w = in.readInt();
             if (v < 0 || v >= V) throw new IndexOutOfBoundsException("vertex " + v + " is not between 0 and " + (V-1));
             if (w < 0 || w >= V) {
                 throw new IndexOutOfBoundsException("vertex " + w + " is not between 0 and " + (V-1));
             }
             double weight = in.readDouble();
-            writer.println(v+"->"+w+"\n");
             addEdge(new DirectedEdge(v, w, weight));
         }
-        writer.println("}");
-        writer.close();
     }
 
     /**

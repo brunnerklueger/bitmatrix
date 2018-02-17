@@ -125,7 +125,6 @@ public class SimuladorConsole {
 //                    break;
 //                }
 //            }
-            
         } catch (Exception ex) {
 
             System.out.println("Error occurred " + ex);
@@ -355,45 +354,97 @@ public class SimuladorConsole {
                     actScenario.traceFile = node.getFirstChild().getNodeValue();
                     break;
                 case "Topology":
+//                    System.out.print("Criando Instância: ");
+//                    actTopology = new Topology();
+//                    actScenario.lstTopology.add(actTopology);
+//                    for (Node n = node.getFirstChild(); n != null; n = n.getNextSibling()) {
+//                        read(n);
+//                    }
+//                    actTopology.createSwitches(hash);
+                    break;
+                case "TopologyId":
+//                    System.out.println(node.getFirstChild().getNodeValue());
+//                    actTopology.setIdTopology(Integer.parseInt(node.getFirstChild().getNodeValue()));
+//                    actTopology.setSaidasDir(simulationDir + "\\Analise\\" + "Scenario" + actScenario.idScenario + "\\" + "Topology" + actTopology.getIdTopology() + "\\");
+//                    createDirectoryTree(actTopology.getSaidasDir());
+                    break;
+                case "path":
                     System.out.print("Criando Instância: ");
                     actTopology = new Topology();
                     actScenario.lstTopology.add(actTopology);
-                    for (Node n = node.getFirstChild(); n != null; n = n.getNextSibling()) {
-                        read(n);
-                    }
-                    actTopology.createSwitches(hash);
-                    break;
-                case "TopologyId":
-                    System.out.println(node.getFirstChild().getNodeValue());
-                    actTopology.setIdTopology(Integer.parseInt(node.getFirstChild().getNodeValue()));
-                    actTopology.setSaidasDir(simulationDir + "\\Analise\\" + "Scenario" + actScenario.idScenario + "\\" + "Topology" + actTopology.getIdTopology() + "\\");
+
+                    int startIndex = node.getFirstChild().getNodeValue().lastIndexOf("\\") + 1;
+                    actTopology.setIdTopology(node.getFirstChild().getNodeValue().substring(startIndex));
+                    actTopology.setSaidasDir(simulationDir + "\\Analise\\" + "Scenario" + actScenario.idScenario + "\\" + actTopology.getIdTopology() + "\\");
                     createDirectoryTree(actTopology.getSaidasDir());
-                    break;
-                case "path":
+
                     actTopology.readTopology(node.getFirstChild().getNodeValue());
                     actTopology.printTopology();
+
+                    for (Integer size : actScenario.lstSizes) {
+                        for (Integer threshold : actScenario.lstThresholds) {
+                            actInstance = new Instance();
+                            actTopology.getLstInstance().add(actInstance);
+
+                            actInstance.setBitMapSize(size);
+                            actInstance.setBitMapThreshold(threshold);
+                            actInstance.type = Instance.InstanceType.BITMAP;
+                            actInstance.setBaseDir(simulationDir + "\\Bitmaps\\" + actTopology.getIdTopology() + "\\" + actInstance.getId());
+                            actInstance.setBitmapDir(actInstance.getBaseDir() + "\\Bitmaps");
+                            createDirectoryTree(actInstance.getBaseDir());
+                        }
+                    }
+                    
+                    actInstance = new Instance();
+                    actTopology.getLstInstance().add(actInstance);
+                    actInstance.type = Instance.InstanceType.COUNTER_ARRAY;
+                    actInstance.setBaseDir(simulationDir + "\\Bitmaps\\" + actTopology.getIdTopology() + "\\" + actInstance.getId());
+                    actInstance.setBitmapDir(actInstance.getBaseDir() + "\\Bitmaps");
+                    createDirectoryTree(actInstance.getBaseDir());
+                    
+                    actInstance = new Instance();
+                    actTopology.getLstInstance().add(actInstance);
+                    actInstance.type = Instance.InstanceType.OPT_COUNTER_ARRAY;
+                    actInstance.setBaseDir(simulationDir + "\\Bitmaps\\" + actTopology.getIdTopology() + "\\" + actInstance.getId());
+                    actInstance.setBitmapDir(actInstance.getBaseDir() + "\\Bitmaps");
+                    createDirectoryTree(actInstance.getBaseDir());
+                    
+                    actTopology.createSwitches(hash);
+
                     break;
                 case "Instance":
-                    actInstance = new Instance();
+//                    actInstance = new Instance();
+//                    for (Node n = node.getFirstChild(); n != null; n = n.getNextSibling()) {
+//                        read(n);
+//                    }
+//                    actTopology.getLstInstance().add(actInstance);
+                    break;
+                case "InstanceId":
+//                    actInstance.setId(node.getFirstChild().getNodeValue());
+//                    actInstance.setBaseDir(simulationDir + "\\Bitmaps\\Topology" + actTopology.getIdTopology() + "\\Instance" + actInstance.getId());
+//                    actInstance.setBitmapDir(actInstance.getBaseDir() + "\\Bitmaps");
+//                    createDirectoryTree(actInstance.getBaseDir());
+                    break;
+                case "Sizes":
                     for (Node n = node.getFirstChild(); n != null; n = n.getNextSibling()) {
                         read(n);
                     }
-                    actTopology.getLstInstance().add(actInstance);
                     break;
-                case "InstanceId":
-                    actInstance.setId(node.getFirstChild().getNodeValue());
-                    actInstance.setBaseDir(simulationDir + "\\Bitmaps\\Topology" + actTopology.getIdTopology() + "\\Instance" + actInstance.getId());
-                    actInstance.setBitmapDir(actInstance.getBaseDir() + "\\Bitmaps");
-                    createDirectoryTree(actInstance.getBaseDir());
+                case "Thresholds":
+                    for (Node n = node.getFirstChild(); n != null; n = n.getNextSibling()) {
+                        read(n);
+                    }
                     break;
                 case "Type":
                     actInstance.type = Instance.InstanceType.getType(Integer.parseInt(node.getFirstChild().getNodeValue()));
                     break;
                 case "bmpSize":
-                    actInstance.setBitMapSize(Integer.parseInt(node.getFirstChild().getNodeValue()));
+//                    actInstance.setBitMapSize(Integer.parseInt(node.getFirstChild().getNodeValue()));
+                    actScenario.lstSizes.add(Integer.parseInt(node.getFirstChild().getNodeValue()));
                     break;
                 case "bmpThreshold":
-                    actInstance.setBitMapThreshold(Float.parseFloat(node.getFirstChild().getNodeValue()));
+//                    actInstance.setBitMapThreshold(Float.parseFloat(node.getFirstChild().getNodeValue()));
+                    actScenario.lstThresholds.add(Integer.parseInt(node.getFirstChild().getNodeValue()));
                     break;
                 default:
                     throw new Exception("Parâmetro " + node.getNodeName() + " desconhecido");

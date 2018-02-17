@@ -19,5 +19,7 @@ public class Scenario {
     public Long endTime;
     public int idScenario;
     public String traceFile;
-    public List<Topology> lstTopology = new ArrayList<>();    
+    public List<Topology> lstTopology = new ArrayList<>();  
+    public List<Integer> lstSizes = new ArrayList<>();
+    public List<Integer> lstThresholds = new ArrayList<>();
 }
