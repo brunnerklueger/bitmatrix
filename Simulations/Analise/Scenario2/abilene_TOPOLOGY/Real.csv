@@ -1,0 +1,12 @@
+;Router 1;Router 2;Router 3;Router 4;Router 5;Router 6;Router 7;Router 8;Router 9;Router 10;Router 11
+Router 1;;0;0;0;0;0;0;0;0;0;0
+Router 2;;;183;181;178;156;75;96;115;95;0
+Router 3;;;;5;258;34;4;20;158;116;0
+Router 4;;;;;17;193;77;111;12;12;0
+Router 5;;;;;;60;9;107;442;274;0
+Router 6;;;;;;;140;257;75;54;0
+Router 7;;;;;;;;162;6;65;65
+Router 8;;;;;;;;;174;65;0
+Router 9;;;;;;;;;;339;0
+Router 10;;;;;;;;;;;65
+Router 11;;;;;;;;;;;
