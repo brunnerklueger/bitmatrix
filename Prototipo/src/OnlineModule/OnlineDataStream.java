@@ -6,6 +6,8 @@
 package OnlineModule;
 
 import Network.DataPacket;
+import Network.Instance;
+import Network.Switch;
 import Simulador.Scenario;
 import Network.Topology;
 import java.io.BufferedReader;
@@ -16,6 +18,10 @@ import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 /**
  *
@@ -168,11 +174,6 @@ public class OnlineDataStream {
                     tracesFIS.close();
                 }
             }
-
-            for (Topology topology : scenario.lstTopology) {
-                topology.saveLastBitmap(lastEpoch);
-            }
-
         }
     }
 

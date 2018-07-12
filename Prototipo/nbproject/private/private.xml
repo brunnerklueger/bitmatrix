@@ -27,9 +27,10 @@
         </group>
         <group name="Ferramenta"/>
         <group>
-            <file>file:/D:/Mestrado/Projetos/fossibitmatrix.git/Prototipo/src/Network/Topology.java</file>
-            <file>file:/D:/Mestrado/Projetos/fossibitmatrix.git/Prototipo/src/AnalysisModule/DataAnalysis.java</file>
-            <file>file:/D:/Mestrado/Projetos/fossibitmatrix.git/Prototipo/src/Network/Instance.java</file>
+            <file>file:/D:/Mestrado/Projetos/fossibitmatrix.git/Prototipo/src/Simulador/GeraRelatorio.java</file>
+            <file>file:/D:/Mestrado/Projetos/fossibitmatrix.git/Prototipo/src/Simulador/SimuladorConsole.java</file>
+            <file>file:/D:/Mestrado/Projetos/fossibitmatrix.git/Prototipo/src/Util/HashCheck.java</file>
+            <file>file:/D:/Mestrado/Projetos/fossibitmatrix.git/Prototipo/src/Network/Switch.java</file>
         </group>
     </open-files>
 </project-private>

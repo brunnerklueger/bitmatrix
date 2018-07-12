@@ -5,11 +5,17 @@
  */
 package Simulador;
 
-import Network.Instance;
 import Network.Hash;
+import Network.Instance;
 import Network.Topology;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
@@ -375,8 +381,11 @@ public class SimuladorConsole {
 
                     int startIndex = node.getFirstChild().getNodeValue().lastIndexOf("\\") + 1;
                     actTopology.setIdTopology(node.getFirstChild().getNodeValue().substring(startIndex));
-                    actTopology.setSaidasDir(simulationDir + "\\Analise\\" + "Scenario" + actScenario.idScenario + "\\" + actTopology.getIdTopology() + "\\");
+                    String scenarioDir = simulationDir + "\\Analise\\" + "Scenario" + actScenario.idScenario;
+                    actTopology.setSaidasDir(scenarioDir + "\\" + actTopology.getIdTopology() + "\\");
                     createDirectoryTree(actTopology.getSaidasDir());
+                    createScenarioConfigFile(scenarioDir);//serve apenas para o GeraRelatorio.java
+                    
 
                     actTopology.readTopology(node.getFirstChild().getNodeValue());
                     actTopology.printTopology();
@@ -451,6 +460,29 @@ public class SimuladorConsole {
             }
         } else {
             read(node.getFirstChild());
+        }
+    }
+    
+    public void createScenarioConfigFile(String scenarioPath){
+        
+        String[] traceFileArrayName = actScenario.traceFile.split(Pattern.quote(File.separator));
+        
+        String traceFileName = traceFileArrayName[traceFileArrayName.length-1];
+        
+        
+        BufferedWriter writer=null;
+        try {
+            writer = new BufferedWriter(new OutputStreamWriter(
+            new FileOutputStream(scenarioPath+ "\\detalhes.txt"), "utf-8"));
+            writer.write(traceFileName);
+            writer.newLine();
+            writer.write(actScenario.startTime.toString());
+            writer.newLine();
+            writer.write(actScenario.endTime.toString());
+        }catch(Exception ex){
+            Logger.getLogger(SimuladorConsole.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+             try {writer.close();} catch (Exception ex) {/*ignore*/}
         }
     }
 

@@ -12,19 +12,27 @@
           <bmpSize>65536</bmpSize>
         </Sizes>
         <Thresholds>
-          <bmpThreshold>10</bmpThreshold>
           <bmpThreshold>30</bmpThreshold>
           <bmpThreshold>50</bmpThreshold>
-          <bmpThreshold>70</bmpThreshold>
         </Thresholds>
-        <path>D:\Mestrado\Projetos\fossibitmatrix.git\Fossi_TOPOLOGY</path>
         <path>D:\Mestrado\Projetos\fossibitmatrix.git\abilene_TOPOLOGY</path>
-        <path>D:\Mestrado\Projetos\fossibitmatrix.git\AS1221_TOPOLOGY</path>
-        <path>D:\Mestrado\Projetos\fossibitmatrix.git\AS1239_TOPOLOGY</path>
-        <path>D:\Mestrado\Projetos\fossibitmatrix.git\AS2914_TOPOLOGY</path>
-        <path>D:\Mestrado\Projetos\fossibitmatrix.git\AS3257_TOPOLOGY</path>
-        <path>D:\Mestrado\Projetos\fossibitmatrix.git\AS3356_TOPOLOGY</path>
-        <path>D:\Mestrado\Projetos\fossibitmatrix.git\AS7018_TOPOLOGY</path>
-        <path>D:\Mestrado\Projetos\fossibitmatrix.git\geant_TOPOLOGY</path>
+		<path>D:\Mestrado\Projetos\fossibitmatrix.git\AS1221_TOPOLOGY</path>
+    </Scenario>
+	<Scenario>
+        <ScenarioId>2</ScenarioId>
+        <startTime>0</startTime>
+        <endTime>99999999</endTime>
+        <traces>D:\Mestrado\Projetos\fossibitmatrix.git\Tracer_1k_Pacotes.csv</traces>
+        <Sizes>
+          <bmpSize>65</bmpSize>
+          <bmpSize>514</bmpSize>
+          <bmpSize>16388</bmpSize>
+          <bmpSize>65531</bmpSize>
+        </Sizes>
+        <Thresholds>
+          <bmpThreshold>30</bmpThreshold>
+          <bmpThreshold>50</bmpThreshold>
+        </Thresholds>
+        <path>D:\Mestrado\Projetos\fossibitmatrix.git\abilene_TOPOLOGY</path>
     </Scenario>
 </Config>

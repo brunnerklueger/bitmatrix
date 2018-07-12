@@ -6,18 +6,21 @@
 package AnalysisModule;
 
 import Network.BitMap;
-import Simulador.Scenario;
-import Network.Topology;
 import Network.Instance;
 import Network.Switch;
-import java.awt.Paint;
+import Network.Topology;
+import Simulador.Scenario;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -26,9 +29,13 @@ import java.util.BitSet;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jfree.chart.ChartColor;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
@@ -36,7 +43,6 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-import static org.jfree.util.Log.error;
 
 /**
  *
@@ -381,7 +387,9 @@ public abstract class DataAnalysis {
     public void realAnalyse(ArrayList<Scenario> lstScenario) throws Exception {
 //        List<Long[][]> matrix = realAnalysis(lstTopology);
         realAnalysis(lstScenario);
+        
         for (Scenario scenario : lstScenario) {
+            HashMap<Long, List<HashMap<Integer, Integer>>> orderMap = new HashMap<>();
             for (Topology topology : scenario.lstTopology) {
                 File bmpFile = new File(topology.getSaidasDir() + "Real.csv");
                 if (!bmpFile.exists()) {
@@ -398,12 +406,54 @@ public abstract class DataAnalysis {
                     oos.print("Router " + (i + 1));
                     for (int j = 0; j < topology.getNumberOfSwitches(); j++) {
                         doPrintElement(oos, i, j, topology.getTrafficMatrix()[i][j]);
+                        if (i < j) {
+                            if (orderMap.containsKey(topology.getTrafficMatrix()[i][j])) {
+
+                                HashMap<Integer, Integer> mapNodes = new HashMap<>();
+                                mapNodes.put(i + 1, j + 1);
+                                orderMap.get(topology.getTrafficMatrix()[i][j]).add(mapNodes);
+                            } else {
+                                LinkedList listaHashMap = new LinkedList();
+                                HashMap<Integer, Integer> mapNodes = new HashMap<>();
+                                mapNodes.put(i + 1, j + 1);
+                                listaHashMap.add(mapNodes);
+                                orderMap.put(topology.getTrafficMatrix()[i][j], listaHashMap);
+                            }
+                        }
                     }
                 }
                 oos.close();
                 fout.close();
 
+               createRealFolderForReport(orderMap, topology.getSaidasDir());
             }
+        }
+    }
+    
+    protected void createRealFolderForReport(HashMap<Long, List<HashMap<Integer, Integer>>> orderMap,
+            String pathForFile){
+        Map<Long, List<HashMap<Integer, Integer>>> map = new TreeMap<>(orderMap).descendingMap();
+        System.out.println("Real After Sorting:");
+        
+        BufferedWriter writer=null;
+        try {
+            writer = new BufferedWriter(new OutputStreamWriter(
+            new FileOutputStream(pathForFile+"real.txt"), "utf-8"));
+            Set set2 = map.entrySet();
+        Iterator iterator2 = set2.iterator();
+        while (iterator2.hasNext()) {
+            Map.Entry me2 = (Map.Entry) iterator2.next();
+            System.out.print(me2.getKey() + ": ");
+            System.out.println(me2.getValue());
+            writer.write(me2.getKey() + ": ");
+            writer.write(me2.getValue().toString());
+              writer.newLine();
+        }
+            
+        } catch (IOException ex) {
+            Logger.getLogger(DataAnalysis.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+             try {writer.close();} catch (Exception ex) {/*ignore*/}
         }
     }
 
@@ -483,7 +533,6 @@ public abstract class DataAnalysis {
     }
 
     public void simulateBitmapAnalyse(List<Scenario> lstScenario) throws Exception {
-        Double valor;
 
         bitmapAnalyse(lstScenario);
         for (Scenario scenario : lstScenario) {
@@ -579,35 +628,30 @@ public abstract class DataAnalysis {
                             } else {
                                 doPrintElement(oos, i, j, instance.trafficMatrix[i][j]);
 
-//                                if (i < j) {
-//                                    if (orderMap.containsKey(instance.trafficMatrix[i][j])) {
-//
-//                                        HashMap<Integer, Integer> mapNodes = new HashMap<>();
-//                                        mapNodes.put(i + 1, j + 1);
-//                                        orderMap.get(instance.trafficMatrix[i][j]).add(mapNodes);
-//                                    } else {
-//                                        LinkedList listaHashMap = new LinkedList();
-//                                        HashMap<Integer, Integer> mapNodes = new HashMap<>();
-//                                        mapNodes.put(i + 1, j + 1);
-//                                        listaHashMap.add(mapNodes);
-//                                        orderMap.put(instance.trafficMatrix[i][j], listaHashMap);
-//                                    }
-//                                }
+                                if (i < j) {
+                                    if (orderMap.containsKey(instance.trafficMatrix[i][j])) {
+
+                                        HashMap<Integer, Integer> mapNodes = new HashMap<>();
+                                        mapNodes.put(i + 1, j + 1);
+                                        orderMap.get(instance.trafficMatrix[i][j]).add(mapNodes);
+                                    } else {
+                                        LinkedList listaHashMap = new LinkedList();
+                                        HashMap<Integer, Integer> mapNodes = new HashMap<>();
+                                        mapNodes.put(i + 1, j + 1);
+                                        listaHashMap.add(mapNodes);
+                                        orderMap.put(instance.trafficMatrix[i][j], listaHashMap);
+                                    }
+                                }
                             }
                         }
                     }
                     oos.close();
                     fout.close();
 
-//                    Map<Double, List<HashMap<Integer, Integer>>> map = new TreeMap<>(orderMap);
-//                    System.out.println("Instancia" + instance.getId() + " After Sorting:");
-//                    Set set2 = map.entrySet();
-//                    Iterator iterator2 = set2.iterator();
-//                    while (iterator2.hasNext()) {
-//                        Map.Entry me2 = (Map.Entry) iterator2.next();
-//                        System.out.print(me2.getKey() + ": ");
-//                        System.out.println(me2.getValue());
-//                    }
+                    String[] strId = instance.getId().split("_");
+                    createBitmapFolderForReport(orderMap, topology.getSaidasDir(),
+                            strId[0],strId[1]);
+                    
                     // Plot Graf
                     XYSeries matrix = new XYSeries("Matrix", false, true);
                     for (int i = 0; i < topology.getNumberOfSwitches(); i++) {
@@ -656,6 +700,38 @@ public abstract class DataAnalysis {
                     );
                 }
             }
+        }
+    }
+    
+    protected void createBitmapFolderForReport(HashMap<Double, List<HashMap<Integer, Integer>>> map,
+            String pathForFile, String strBitmapSize, String strThreshold){
+        Map<Double, List<HashMap<Integer, Integer>>> orderMap = new TreeMap<>(map).descendingMap();
+        System.out.println("Instancia" + strBitmapSize+"_"+strThreshold + " After Sorting:");
+        
+        File bitmapSizeDirFolder = new File(pathForFile + strBitmapSize);
+        if(!bitmapSizeDirFolder.exists()){
+            bitmapSizeDirFolder.mkdir();
+        }
+        
+        BufferedWriter writer=null;
+        try {
+            writer = new BufferedWriter(new OutputStreamWriter(
+            new FileOutputStream(bitmapSizeDirFolder+"\\"+strThreshold+".txt"), "utf-8"));
+            Set set2 = orderMap.entrySet();
+        Iterator iterator2 = set2.iterator();
+        while (iterator2.hasNext()) {
+            Map.Entry me2 = (Map.Entry) iterator2.next();
+            System.out.print(me2.getKey() + ": ");
+            System.out.println(me2.getValue());
+            writer.write(me2.getKey() + ": ");
+            writer.write(me2.getValue().toString());
+              writer.newLine();
+        }
+            
+        } catch (IOException ex) {
+            Logger.getLogger(DataAnalysis.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+             try {writer.close();} catch (Exception ex) {/*ignore*/}
         }
     }
 
